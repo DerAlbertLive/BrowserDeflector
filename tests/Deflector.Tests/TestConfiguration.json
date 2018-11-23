@@ -1,0 +1,30 @@
+{
+  "browsers" : {
+     "chrome" : {
+        "path" : "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+        "parameterFormat" :  "--profile-directory={0}" 
+     },
+     "firefox" : {
+         "path" : "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+         "parameterFormat" :  "-P={0}"
+     },
+     "edge" : {
+        "path" : "microsoft-edge:",
+        "parameter" : "option1" 
+     } 
+  },
+  "default" : {
+    "browser" : "edge"
+  },
+  "destinations" : [
+    {
+       "startUrl" : "company.visualstudio.com",
+       "browser" : "chrome",
+       "parameters" : ["Profile 1"]
+    },
+    {
+      "startUrl" : "private.visualstudio.com",
+      "browser" : "firefox" 
+    }
+  ]
+}
