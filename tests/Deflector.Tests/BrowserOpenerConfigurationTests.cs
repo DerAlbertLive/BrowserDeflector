@@ -3,7 +3,7 @@ using System.Linq;
 using FluentAssertions;
 using Xunit;
 
-namespace BrowserOpener.Tests
+namespace Deflector.Tests
 {
     public class BrowserOpenerConfigurationTests
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Xunit;
 
-namespace BrowserOpener.Tests
+namespace Deflector.Tests
 {
     public class ConfigurationFixture
     {

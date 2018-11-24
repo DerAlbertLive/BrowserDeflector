@@ -1,4 +1,4 @@
-﻿namespace BrowserOpener
+﻿namespace Deflector
 {
     public class BrowserSelector
     {

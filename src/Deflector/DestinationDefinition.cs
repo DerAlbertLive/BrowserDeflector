@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BrowserOpener
+namespace Deflector
 {
     public class DestinationDefinition
     {

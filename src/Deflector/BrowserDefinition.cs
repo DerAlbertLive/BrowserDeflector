@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
 
-namespace BrowserOpener
+namespace Deflector
 {
     public class BrowserDefinition
     {

@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace BrowserOpener.Tests
+namespace Deflector.Tests
 {
     public class BrowserSelectorTests : IClassFixture<ConfigurationFixture>
     {
