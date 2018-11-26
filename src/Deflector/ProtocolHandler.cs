@@ -5,6 +5,7 @@ using Microsoft.Win32;
 namespace Deflector
 {
     // based on https://github.com/da2x/EdgeDeflector/blob/master/EdgeDeflector/Program.cs
+
     internal class ProtocolHandler
     {
         public const string InstallAsBrowser = "--install-browser";
@@ -77,6 +78,7 @@ namespace Deflector
 
             using (var appKey = Registry.LocalMachine.OpenOrCreateSubKey(appKeyPath))
             {
+                appKey.SetValue(string.Empty, applicationName);
                 using (var defaultIconKey = appKey.OpenOrCreateSubKey("DefaultIcon"))
                 {
                     defaultIconKey.SetValue(string.Empty, execPath + ",0");
