@@ -25,3 +25,10 @@ Same a Software Development, without IDE ;-)
 
 If you have still use Websites which only runs in IE 11 for reasons, then this might
 be a tool for you.
+
+
+
+
+### Linces
+
+The Programm Icon is derived from https://svgsilh.com/image/773215.html

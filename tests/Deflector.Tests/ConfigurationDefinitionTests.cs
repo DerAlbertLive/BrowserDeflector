@@ -5,7 +5,7 @@ namespace Deflector.Tests
 {
     public class ConfigurationDefinitionTests : IClassFixture<ConfigurationFixture>
     {
-        readonly BrowserOpenerConfiguration _configuration;
+        readonly DeflectorConfiguration _configuration;
 
         public ConfigurationDefinitionTests(ConfigurationFixture fixture)
         {
@@ -38,7 +38,7 @@ namespace Deflector.Tests
         public void Should_the_parameter_format_set()
         {
             var browser = _configuration.Browsers["firefox"];
-            browser.ParameterFormat.Should().Be("-P={0}");
+            browser.ParameterFormat.Should().Be("-P \"{0}\"");
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace Deflector.Tests
         [Fact]
         public void Should_contain_two_destinations()
         {
-            _configuration.Destinations.Length.Should().Be(2);
+            _configuration.Destinations.Length.Should().Be(3);
         }
 
         [Fact]

@@ -24,10 +24,10 @@ namespace Deflector
 
         public string GetFullPath(object[] strings)
         {
-            return $"{Path} {GetParameters(strings)}".Trim();
+            return $"{Path} {GetArguments(strings)}".Trim();
         }
 
-        string GetParameters(object[] strings)
+        public string GetArguments(object[] strings)
         {
             if (!string.IsNullOrWhiteSpace(Parameter))
             {
@@ -46,7 +46,7 @@ namespace Deflector
         {
             if (path.IndexOf("chrome.exe", StringComparison.OrdinalIgnoreCase) > 0)
             {
-                return "--profile-directory-directory=\"{0}\"";
+                return "--profile-directory=\"{0}\"";
             }
 
             if (path.IndexOf("firefox.exe", StringComparison.OrdinalIgnoreCase) > 0)

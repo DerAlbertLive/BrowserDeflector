@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.Diagnostics;
 
 namespace Deflector
 {
@@ -6,10 +7,30 @@ namespace Deflector
     {
         static void Main(string[] args)
         {
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddJsonFile("Configuration.json", optional: false);
+            if (args.Length == 1)
+            {
 
-            var configuration = configurationBuilder.Build();
+                var configuration = new ConfigurationLoader().LoadConfiguration("Configuration.json");
+                var selector = new BrowserSelector(configuration);
+                var browser = selector.SelectBrowser(args[0]);
+                OpenUri(browser);
+            }
+            else if (args.Length == 0)
+            {
+                new RegisterHandler().Register();
+            }
+        }
+
+           
+        static void OpenUri((string filename, string arguments) browser)
+        {
+            var launcher = new ProcessStartInfo()
+            {
+                FileName = browser.filename,
+                Arguments = browser.arguments,
+                UseShellExecute = false
+            };
+            Process.Start(launcher);
         }
     }
 }

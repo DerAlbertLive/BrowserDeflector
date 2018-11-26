@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Xunit;
+﻿using Xunit;
 
 namespace Deflector.Tests
 {
@@ -7,17 +6,11 @@ namespace Deflector.Tests
     {
         public ConfigurationFixture()
         {
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddJsonFile("TestConfiguration.json", optional: false);
-
-            var configuration = configurationBuilder.Build();
-            var browserOpenerConfiguration = new BrowserOpenerConfiguration();
-
-            configuration.Bind(browserOpenerConfiguration);
-            Configuration = browserOpenerConfiguration;
+            var loader = new ConfigurationLoader();
+            Configuration = loader.LoadConfiguration("TestConfiguration.json");
         }
 
-        public BrowserOpenerConfiguration Configuration { get; }
+        public DeflectorConfiguration Configuration { get; }
     }
 
     [CollectionDefinition("Configuration")]

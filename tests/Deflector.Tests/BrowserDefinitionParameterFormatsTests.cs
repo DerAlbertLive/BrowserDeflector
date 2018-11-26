@@ -13,7 +13,7 @@ namespace Deflector.Tests
                 Path = "C:\\ding\\dong\\chRomE.exe"
             };
 
-            browser.ParameterFormat.Should().Be("--profile-directory-directory=\"{0}\"");
+            browser.ParameterFormat.Should().Be("--profile-directory=\"{0}\"");
         }
 
         [Fact]

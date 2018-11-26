@@ -2,11 +2,11 @@
   "browsers" : {
      "chrome" : {
         "path" : "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
-        "parameterFormat" :  "--profile-directory={0}" 
+        "parameterFormat" :  "--profile-directory=\"{0}\"" 
      },
      "firefox" : {
          "path" : "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
-         "parameterFormat" :  "-P={0}"
+         "parameterFormat" :  "-P \"{0}\""
      } 
   },
   "default" : {
@@ -16,7 +16,12 @@
     {
        "startUrl" : "biontech.visualstudio.com",
        "browser" : "chrome",
-       "parameters" : "Profile 1" 
+       "parameters" : ["Profile 1"] 
+    },
+    {
+      "startUrl" : "deralbert.visualstudio.com",
+      "browser" : "chrome",
+      "parameters" : ["Default"] 
     }
   ]
 }

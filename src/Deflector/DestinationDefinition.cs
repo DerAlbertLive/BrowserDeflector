@@ -13,6 +13,6 @@ namespace Deflector
 
         public string Browser { get; set; }
 
-        public string[] Parameters { get; set; }
+        public object[] Parameters { get; set; }
     }
 }

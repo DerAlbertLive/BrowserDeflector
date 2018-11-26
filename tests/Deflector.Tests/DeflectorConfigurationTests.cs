@@ -5,13 +5,13 @@ using Xunit;
 
 namespace Deflector.Tests
 {
-    public class BrowserOpenerConfigurationTests
+    public class DeflectorConfigurationTests
     {
-        readonly BrowserOpenerConfiguration _configuration;
+        readonly DeflectorConfiguration _configuration;
 
-        public BrowserOpenerConfigurationTests()
+        public DeflectorConfigurationTests()
         {
-            _configuration = new BrowserOpenerConfiguration();
+            _configuration = new DeflectorConfiguration();
         }
 
 

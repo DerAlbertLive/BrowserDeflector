@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Deflector
 {
-    public class BrowserOpenerConfiguration
+    public class DeflectorConfiguration
     {
         public IDictionary<string, BrowserDefinition> Browsers { get; set; } = new Dictionary<string, BrowserDefinition>();
 
