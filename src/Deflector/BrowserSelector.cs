@@ -2,7 +2,7 @@
 
 namespace Deflector
 {
-    public class BrowserSelector
+    internal class BrowserSelector
     {
         readonly DeflectorConfiguration _configuration;
 

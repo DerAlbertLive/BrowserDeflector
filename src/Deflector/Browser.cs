@@ -1,6 +1,6 @@
 ﻿namespace Deflector
 {
-    public class Browser
+    internal class Browser
     {
         public Browser(string filename, string arguments)
         {

@@ -5,8 +5,11 @@ using Microsoft.Win32;
 namespace Deflector
 {
     // based on https://github.com/da2x/EdgeDeflector/blob/master/EdgeDeflector/Program.cs
-    public class ProtocolHandler
+    internal class ProtocolHandler
     {
+        public const string InstallAsBrowser = "--install-browser";
+        public const string UninstallAsBrowser = "--uninstall-browser";
+
         ProtocolHandler()
         {
             
@@ -17,15 +20,26 @@ namespace Deflector
             return new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        void ElevatePermissions()
+        void ElevatePermissions(string arguments)
         {
             var rerun = new ProcessStartInfo()
             {
                 FileName = System.Reflection.Assembly.GetExecutingAssembly().Location,
+                Arguments = arguments,
                 UseShellExecute = true,
                 Verb = "runas"
             };
             Process.Start(rerun);
+        }
+
+        void RemoveClassRoot(string applicationName)
+        {
+            Registry.ClassesRoot.DeleteSubKeyTree(applicationName, false);
+        }
+
+        bool IsRegistered(string applicationName)
+        {
+            return Registry.ClassesRoot.OpenSubKey(applicationName, false) != null;
         }
 
         void RegisterClassRoot(string applicationName)
@@ -46,6 +60,12 @@ namespace Deflector
                 }
                 classRegistryKey.SetValue("URL Protocol", string.Empty);
             }
+        }
+
+        void RemoveHttpProtocolHandler(string applicationName)
+        {
+            var appKeyPath = $@"SOFTWARE\Clients\StartMenuInternet\{applicationName}";
+            Registry.LocalMachine.DeleteSubKeyTree(appKeyPath, false);
         }
 
         void RegisterHttpProtocolHandler(string applicationName)
@@ -90,19 +110,40 @@ namespace Deflector
             registeredAppKey.Close();
         }
 
-        public static void Register()
+        const string ApplicationName = "Browser Deflector";
+
+        public static bool IsInstalled()
+        {
+            var handler = new ProtocolHandler();
+            return handler.IsRegistered(ApplicationName);
+        }
+
+        public static void Uninstall()
         {
             var handler = new ProtocolHandler();
             if (!handler.IsElevated())
             {
-                handler.ElevatePermissions();
+                handler.ElevatePermissions(UninstallAsBrowser);
             }
             else
             {
-                const string applicationName = "Browser Deflector";
+                handler.RemoveClassRoot(ApplicationName);
+                handler.RemoveHttpProtocolHandler(ApplicationName);
+            }
+        }
 
-                handler.RegisterClassRoot(applicationName);
-                handler.RegisterHttpProtocolHandler(applicationName);
+        public static void Install()
+        {
+            var handler = new ProtocolHandler();
+            if (!handler.IsElevated())
+            {
+                handler.ElevatePermissions(InstallAsBrowser);
+            }
+            else
+            {
+
+                handler.RegisterClassRoot(ApplicationName);
+                handler.RegisterHttpProtocolHandler(ApplicationName);
             }
         }
     }

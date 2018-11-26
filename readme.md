@@ -1,4 +1,4 @@
-# Browser Deflector *Work in Progress*
+# Browser Deflector
 
 Browser Deflector will be registerd as the Default Browser in the System. So that
 every link (http and https) will be open by Deflector, then Deflector decides on
@@ -26,9 +26,6 @@ Same a Software Development, without IDE ;-)
 If you have still use Websites which only runs in IE 11 for reasons, then this might
 be a tool for you.
 
-
-
-
-### Linces
+### Licenses
 
 The Programm Icon is derived from https://svgsilh.com/image/773215.html
