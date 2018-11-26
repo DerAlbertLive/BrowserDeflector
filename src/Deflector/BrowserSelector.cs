@@ -13,8 +13,9 @@ namespace Deflector
 
         public Browser SelectBrowser(string url)
         {
-            var uri = new Uri(url);
-            var destinationDefinition = FindDestination(uri);
+            var domainName = RemoveProtocoll(url);
+
+            var destinationDefinition = FindDestination(domainName);
 
             if (_configuration.Browsers.TryGetValue(destinationDefinition.Browser, out var browser))
             {
@@ -28,19 +29,24 @@ namespace Deflector
             return new Browser(null, null);
         }
 
+        string RemoveProtocoll(string url)
+        {
+            var uri = new Uri(url);
+            return url.Substring(uri.Scheme.Length + 3);
+        }
+
         bool IsFileNameOnly(BrowserDefinition browser)
         {
             return string.Equals(browser.Path, "microsoft-edge:", StringComparison.OrdinalIgnoreCase);
         }
 
-        DestinationDefinition FindDestination(Uri uri)
+        DestinationDefinition FindDestination(string domainName)
         {
             DestinationDefinition destinationDefinition = _configuration.Default;
 
-            var domainAndPath = $"{uri.Host}{uri.AbsoluteUri}";
             foreach (var definition in _configuration.Destinations)
             {
-                if (domainAndPath.StartsWith(definition.StartUrl))
+                if (domainName.StartsWith(definition.StartUrl))
                 {
                     destinationDefinition = definition;
                     break;

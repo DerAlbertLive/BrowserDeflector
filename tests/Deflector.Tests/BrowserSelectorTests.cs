@@ -38,6 +38,14 @@ namespace Deflector.Tests
 
 
         [Fact]
+        public void Http_LocalHost_with_port_should_resolve_profile2()
+        {
+            var browser = _selector.SelectBrowser("http://localhost:3475");
+
+            browser.Arguments.Should().Be("--profile-directory=\"Profile 2\" http://localhost:3475");
+        }
+
+        [Fact]
         public void Http_CompanyUrl_should_resolve_profile1()
         {
             var browser = _selector.SelectBrowser("http://company.visualstudio.com/dingel?23=1");

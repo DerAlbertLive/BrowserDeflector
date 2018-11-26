@@ -6,8 +6,13 @@ namespace Deflector
 {
     class Program
     {
+        const string BrowserDeflector = "Browser Deflector";
+
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             if (ShouldLaunchBrowser(args))
             {
                 var configuration = ConfigurationLoader.Load("Configuration.json");
@@ -19,16 +24,21 @@ namespace Deflector
             else if (ShouldUninstall(args))
             {
                 ProtocolHandler.Uninstall();
-                MessageBox.Show("Browser Deflector removed as a browser,\r\n now you must set an other default browser", "Browser Deflector", MessageBoxButtons.OK);
-                LaunchBrowser(new Browser("ms-settings:defaultapps", null));
+                var result = MessageBox.Show($"{BrowserDeflector} removed as a browser,\r\nYou must set an other default Web browser.\r\n\r\nIf you click ok, the Default Apps Settings will be opened", BrowserDeflector, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (result == DialogResult.OK)
+                {
+                    LaunchBrowser(new Browser("ms-settings:defaultapps", null));
+                }
             }
             else if (ShouldInstall(args))
             {
                 ProtocolHandler.Install();
-                MessageBox.Show("Browser Deflector is now registered as a browser,\r\n now you must set deflector as Default Browser", "Browser Deflector", MessageBoxButtons.OK);
-                LaunchBrowser(new Browser("ms-settings:defaultapps", null));
+                var result =MessageBox.Show($"{BrowserDeflector} is now registered as a browser,\r\nYou must set 'Deflector' as default Web Browser.\r\n\r\nIf you click ok, the Default Apps Settings will be opened", BrowserDeflector, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (result == DialogResult.OK)
+                {
+                    LaunchBrowser(new Browser("ms-settings:defaultapps", null));
+                }
             }
-
             else if (args.Length == 0)
             {
                 if (ProtocolHandler.IsInstalled())
@@ -40,14 +50,18 @@ namespace Deflector
                     Install();
                 }
             }
+            else
+            {
+                Environment.Exit(1);
+            }
         }
 
         static void Uninstall()
         {
             var result =
                 MessageBox.Show(
-                    "Browser Deflector is registered as a browser.\r\nWould you like to remove it?\r\n\r\nan UAC prompt will appear.",
-                    "Browser Deflector", MessageBoxButtons.YesNo);
+                    $"{BrowserDeflector} is registered as a browser.\r\nWould you like to remove it?\r\n\r\nAn UAC prompt will appear.",
+                    BrowserDeflector, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
@@ -59,8 +73,8 @@ namespace Deflector
         {
             var result =
                 MessageBox.Show(
-                    "Browser Deflector has to register themselves as a browser.\r\nWould you like to do that now?\r\n\r\nan UAC prompt will appear.",
-                    "Browser Deflector", MessageBoxButtons.YesNo);
+                    $"{BrowserDeflector} has to register themselves as a browser.\r\nWould you like to do that now?\r\n\r\nAn UAC prompt will appear.",
+                    BrowserDeflector, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 ProtocolHandler.Install();
@@ -83,8 +97,23 @@ namespace Deflector
             {
                 return false;
             }
-            var command = args[0];
-            return args.Length == 1 && (command != ProtocolHandler.InstallAsBrowser && command != ProtocolHandler.UninstallAsBrowser);
+            var uri = args[0];
+            if (uri == ProtocolHandler.InstallAsBrowser || uri == ProtocolHandler.UninstallAsBrowser)
+            {
+                return false;
+            }
+
+            try
+            {
+                var a = new Uri(uri);
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"The Uri: '{uri}' could not be opened", BrowserDeflector, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
         }
 
 
