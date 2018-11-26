@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Deflector
 {
@@ -9,26 +8,26 @@ namespace Deflector
         {
             if (args.Length == 1)
             {
-
-                var configuration = new ConfigurationLoader().LoadConfiguration("Configuration.json");
+                var configuration = ConfigurationLoader.Load("Configuration.json");
                 var selector = new BrowserSelector(configuration);
+                
                 var browser = selector.SelectBrowser(args[0]);
-                OpenUri(browser);
+                LaunchBrowser(browser);
             }
             else if (args.Length == 0)
             {
-                new RegisterHandler().Register();
+                ProtocolHandler.Register();
             }
         }
 
            
-        static void OpenUri((string filename, string arguments) browser)
+        static void LaunchBrowser(Browser browser)
         {
             var launcher = new ProcessStartInfo()
             {
-                FileName = browser.filename,
-                Arguments = browser.arguments,
-                UseShellExecute = browser.arguments == null
+                FileName = browser.Filename,
+                Arguments = browser.Arguments,
+                UseShellExecute = browser.Arguments == null // without arguments we have a protocol handler only uri, these must be started with ShellExecute
             };
             Process.Start(launcher);
         }

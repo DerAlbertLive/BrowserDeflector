@@ -11,7 +11,7 @@ namespace Deflector
             _configuration = configuration;
         }
 
-        public (string filename, string arguments) SelectBrowser(string url)
+        public Browser SelectBrowser(string url)
         {
             var uri = new Uri(url);
             var destinationDefinition = FindDestination(uri);
@@ -21,11 +21,11 @@ namespace Deflector
                 var arguments = browser.GetArguments(destinationDefinition.Parameters);
                 if (IsFileNameOnly(browser))
                 {
-                    return ($"{browser.Path}{url}", null);
+                    return new Browser($"{browser.Path}{url}", null);
                 }
-                return (browser.Path, $"{arguments} {url}");
+                return new Browser(browser.Path, $"{arguments} {url}");
             }
-            return (null, null);
+            return new Browser(null, null);
         }
 
         bool IsFileNameOnly(BrowserDefinition browser)

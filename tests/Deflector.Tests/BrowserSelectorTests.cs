@@ -17,7 +17,7 @@ namespace Deflector.Tests
         {
             var browser = _selector.SelectBrowser("http://company.visualstudio.com/dingel");
 
-            browser.filename.Should().EndWith("chrome.exe");
+            browser.Filename.Should().EndWith("chrome.exe");
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace Deflector.Tests
         {
             var browser = _selector.SelectBrowser("https://company.visualstudio.com");
 
-            browser.filename.Should().EndWith("chrome.exe");
+            browser.Filename.Should().EndWith("chrome.exe");
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace Deflector.Tests
         {
             var browser = _selector.SelectBrowser("https://private.visualstudio.com");
 
-            browser.filename.Should().EndWith("firefox.exe");
+            browser.Filename.Should().EndWith("firefox.exe");
         }
 
 
@@ -42,7 +42,7 @@ namespace Deflector.Tests
         {
             var browser = _selector.SelectBrowser("http://company.visualstudio.com/dingel?23=1");
 
-            browser.arguments.Should().Be("--profile-directory=\"Profile 1\" http://company.visualstudio.com/dingel?23=1");
+            browser.Arguments.Should().Be("--profile-directory=\"Profile 1\" http://company.visualstudio.com/dingel?23=1");
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace Deflector.Tests
         {
             var browser = _selector.SelectBrowser("http://default.visualstudio.com/dingel?23=1");
 
-            browser.arguments.Should().Be("--profile-directory=\"Default\" http://default.visualstudio.com/dingel?23=1");
+            browser.Arguments.Should().Be("--profile-directory=\"Default\" http://default.visualstudio.com/dingel?23=1");
         }
 
         [Fact]
@@ -58,8 +58,8 @@ namespace Deflector.Tests
         {
             var browser = _selector.SelectBrowser("http://dingel.visualstudio.com/dingel?23=1");
 
-            browser.filename.Should().Be("microsoft-edge:http://dingel.visualstudio.com/dingel?23=1");
-            browser.arguments.Should().BeNull();
+            browser.Filename.Should().Be("microsoft-edge:http://dingel.visualstudio.com/dingel?23=1");
+            browser.Arguments.Should().BeNull();
         }
     }
 }

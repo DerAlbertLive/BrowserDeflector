@@ -17,12 +17,11 @@
   },
   "destinations" : [
     {
-       "startUrl" : "biontech.visualstudio.com",
-       "browser" : "chrome",
-       "parameters" : ["Profile 1"] 
+       "startUrl" : "bing.com",
+       "browser" : "firefox"
     },
     {
-      "startUrl" : "deralbert.visualstudio.com",
+      "startUrl" : "google.com",
       "browser" : "chrome",
       "parameters" : ["Default"] 
     }

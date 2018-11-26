@@ -7,7 +7,7 @@ namespace Deflector.Tests
         public ConfigurationFixture()
         {
             var loader = new ConfigurationLoader();
-            Configuration = loader.LoadConfiguration("TestConfiguration.json");
+            Configuration = ConfigurationLoader.Load("TestConfiguration.json");
         }
 
         public DeflectorConfiguration Configuration { get; }

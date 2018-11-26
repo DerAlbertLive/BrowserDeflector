@@ -5,7 +5,7 @@ namespace Deflector
 {
     public class ConfigurationLoader
     {
-        public DeflectorConfiguration LoadConfiguration(string path)
+        public static DeflectorConfiguration Load(string path)
         {
             if (!File.Exists(path))
             {
@@ -13,11 +13,16 @@ namespace Deflector
                 var execPath = executingAssembly.Location;
                 path = Path.Combine(Path.GetDirectoryName(execPath), path);
             }
-            using (var reader = File.OpenText(path))
+
+            if (File.Exists(path))
             {
-                var serializer =  new JsonSerializer();
-                return serializer.Deserialize<DeflectorConfiguration>(new JsonTextReader(reader));
+                using (var reader = File.OpenText(path))
+                {
+                    var serializer =  new JsonSerializer();
+                    return serializer.Deserialize<DeflectorConfiguration>(new JsonTextReader(reader));
+                }
             }
+
             return new DeflectorConfiguration();
         }
     }
