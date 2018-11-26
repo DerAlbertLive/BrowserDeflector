@@ -13,7 +13,7 @@ namespace Deflector
 
         public Browser SelectBrowser(string url)
         {
-            var domainName = RemoveProtocoll(url);
+            var domainName = RemoveProtocol(url);
 
             var destinationDefinition = FindDestination(domainName);
 
@@ -29,7 +29,7 @@ namespace Deflector
             return new Browser(null, null);
         }
 
-        string RemoveProtocoll(string url)
+        string RemoveProtocol(string url)
         {
             var uri = new Uri(url);
             return url.Substring(uri.Scheme.Length + 3);
