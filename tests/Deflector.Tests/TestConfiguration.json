@@ -8,9 +8,16 @@
          "path" : "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
          "parameterFormat" :  "-P \"{0}\""
      },
+     "chromeDefault" : {
+        "path" : "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+        "parameter" : "--profile-directory=\"Default\"" 
+     },
      "edge" : {
-        "path" : "microsoft-edge:",
-        "parameter" : "option1" 
+       "path" : "microsoft-edge:"
+     },
+     "edgeWithOption" : {
+       "path" : "microsoft-edge:",
+       "parameter" : "option1" 
      } 
   },
   "default" : {
@@ -30,6 +37,10 @@
     {
       "startUrl" : "private.visualstudio.com",
       "browser" : "firefox" 
+    },
+    {
+      "startUrl" : "default.visualstudio.com",
+      "browser" : "chromeDefault" 
     }
   ]
 }

@@ -13,9 +13,9 @@ namespace Deflector.Tests
         }
 
         [Fact]
-        public void Should_have_three_browserDefinitions()
+        public void Should_have_five_browserDefinitions()
         {
-            _configuration.Browsers.Count.Should().Be(3);
+            _configuration.Browsers.Count.Should().Be(5);
         }
 
         [Theory]
@@ -44,7 +44,7 @@ namespace Deflector.Tests
         [Fact]
         public void Should_the_parameter_set()
         {
-            var browser = _configuration.Browsers["edge"];
+            var browser = _configuration.Browsers["edgeWithOption"];
             browser.Parameter.Should().Be("option1");
         }
 
@@ -61,9 +61,9 @@ namespace Deflector.Tests
         }
 
         [Fact]
-        public void Should_contain_two_destinations()
+        public void Should_contain_four_destinations()
         {
-            _configuration.Destinations.Length.Should().Be(3);
+            _configuration.Destinations.Length.Should().Be(4);
         }
 
         [Fact]

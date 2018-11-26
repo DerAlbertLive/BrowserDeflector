@@ -28,7 +28,7 @@ namespace Deflector
             {
                 FileName = browser.filename,
                 Arguments = browser.arguments,
-                UseShellExecute = false
+                UseShellExecute = browser.arguments == null
             };
             Process.Start(launcher);
         }

@@ -19,9 +19,18 @@ namespace Deflector
             if (_configuration.Browsers.TryGetValue(destinationDefinition.Browser, out var browser))
             {
                 var arguments = browser.GetArguments(destinationDefinition.Parameters);
+                if (IsFileNameOnly(browser))
+                {
+                    return ($"{browser.Path}{url}", null);
+                }
                 return (browser.Path, $"{arguments} {url}");
             }
             return (null, null);
+        }
+
+        bool IsFileNameOnly(BrowserDefinition browser)
+        {
+            return string.Equals(browser.Path, "microsoft-edge:", StringComparison.OrdinalIgnoreCase);
         }
 
         DestinationDefinition FindDestination(Uri uri)

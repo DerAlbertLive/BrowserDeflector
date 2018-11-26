@@ -7,10 +7,13 @@
      "firefox" : {
          "path" : "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
          "parameterFormat" :  "-P \"{0}\""
+     },
+     "edge" : {
+       "path" : "microsoft-edge:"
      } 
   },
   "default" : {
-    "browser" : "firefox"
+    "browser" : "edge"
   },
   "destinations" : [
     {
