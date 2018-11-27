@@ -47,6 +47,8 @@ for some examples.
 
 TODO: Better Docs here ;)
 
+[Short Description Video, in German](https://www.youtube.com/watch?v=w5gvAhC0lMs)
+
 ## Licenses
 
 The Programm Icon is derived from https://svgsilh.com/image/773215.html
