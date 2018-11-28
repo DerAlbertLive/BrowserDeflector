@@ -6,7 +6,7 @@ namespace Deflector
     {
         public DestinationDefinition()
         {
-            Parameters = Array.Empty<string>();
+            Parameters = Array.Empty<object>();
         }
 
         public string StartUrl { get; set; }
