@@ -87,7 +87,6 @@ namespace Deflector
                 using (var openCommandKey = appKey.OpenOrCreateSubKey(@"shell\open\command"))
                 {
                     openCommandKey.SetValue(string.Empty, execPath + " \"%1\"");
-                    openCommandKey.Close();
                 }
 
                 using (var capabilityKey = appKey.OpenOrCreateSubKey("Capabilities"))
@@ -100,16 +99,12 @@ namespace Deflector
                     {
                         urlAssociationsKey.SetValue("http", applicationName);
                         urlAssociationsKey.SetValue("https", applicationName);
-                        urlAssociationsKey.Close();
                     }
-
-                    capabilityKey.Close();
                 }
             }
 
             var registeredAppKey = Registry.LocalMachine.OpenOrCreateSubKey(@"SOFTWARE\RegisteredApplications");
             registeredAppKey.SetValue(applicationName, capabilitiesKeyPath);
-            registeredAppKey.Close();
         }
 
         const string ApplicationName = "Browser Deflector";

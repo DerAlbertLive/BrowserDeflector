@@ -7,13 +7,10 @@ namespace Deflector.Tests
 {
     public class DeflectorConfigurationTests
     {
-        readonly DeflectorConfiguration _configuration;
-
         public DeflectorConfigurationTests()
         {
             _configuration = new DeflectorConfiguration();
         }
-
 
         [Fact]
         public void With_no_browsers_and_no_default_browser_should_throw_exception()
@@ -95,5 +92,6 @@ namespace Deflector.Tests
             a.Should().Throw<InvalidOperationException>();
         }
 
+        readonly DeflectorConfiguration _configuration;
     }
 }

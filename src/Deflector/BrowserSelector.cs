@@ -13,9 +13,9 @@ namespace Deflector
 
         public Browser SelectBrowser(string url)
         {
-            var domainName = RemoveProtocol(url);
+            var urlWithoutScheme = RemoveProtocol(url);
 
-            var destinationDefinition = FindDestination(domainName);
+            var destinationDefinition = FindDestination(urlWithoutScheme);
 
             if (_configuration.Browsers.TryGetValue(destinationDefinition.Browser, out var browser))
             {
@@ -40,13 +40,17 @@ namespace Deflector
             return string.Equals(browser.Path, "microsoft-edge:", StringComparison.OrdinalIgnoreCase);
         }
 
-        DestinationDefinition FindDestination(string domainName)
+
+        DestinationDefinition FindDestination(string url)
         {
             DestinationDefinition destinationDefinition = _configuration.Default;
 
             foreach (var definition in _configuration.Destinations)
             {
-                if (domainName.StartsWith(definition.StartUrl))
+                var alternateStartUrl = GetAlternateStartUrl(definition.StartUrl);
+
+                if (url.StartsWith(definition.StartUrl,StringComparison.OrdinalIgnoreCase) 
+                    || url.StartsWith(alternateStartUrl, StringComparison.OrdinalIgnoreCase))
                 {
                     destinationDefinition = definition;
                     break;
@@ -54,6 +58,16 @@ namespace Deflector
             }
 
             return destinationDefinition;
+        }
+
+        private static string GetAlternateStartUrl(string url)
+        {
+            const string www = "www.";
+            if (url.StartsWith(www, StringComparison.OrdinalIgnoreCase))
+            {
+                return url.Substring(www.Length);
+            }
+            return www + url;
         }
     }
 }
