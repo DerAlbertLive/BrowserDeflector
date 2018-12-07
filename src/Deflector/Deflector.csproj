@@ -4,7 +4,6 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net46</TargetFramework>
   </PropertyGroup>
-
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <Product>Browser Deflector</Product>
@@ -13,8 +12,6 @@
     <PackageId>BrowserDeflector</PackageId>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/DerAlbertCom/BrowserDeflector</RepositoryUrl>
-    <AssemblyVersion>0.5.0.0</AssemblyVersion>
-    <FileVersion>0.5.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
