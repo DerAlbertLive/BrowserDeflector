@@ -1,8 +1,8 @@
-assembly-versioning-scheme: MajorMinorPatch
-assembly-file-versioning-scheme: MajorMinorPatchTag
-increment: Patch
+assembly-versioning-scheme: MajorMinorPatchTag
+legacy-semver-padding: 4
+mode: ContinuousDelivery
 branches:
-  develop:
-     increment: Patch
+  dev(elop)?(ment)?$:
+    increment: Patch
 ignore:
   sha: []
