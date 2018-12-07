@@ -29,6 +29,29 @@ namespace Deflector.Tests
         }
 
         [Fact]
+        public void Https_CompanyUrl_with_should_resolve_chrome()
+        {
+            var browser = _selector.SelectBrowser("https://www.company.visualstudio.com");
+
+            browser.Filename.Should().EndWith("chrome.exe");
+        }
+
+        [Fact]
+        public void Https_www_Foo_with_should_resolve_chrome()
+        {
+            var browser = _selector.SelectBrowser("https://www.foo.com");
+
+            browser.Filename.Should().EndWith("foo.exe");
+        }
+
+        [Fact]
+        public void Http_Foo_with_should_resolve_chrome()
+        {
+            var browser = _selector.SelectBrowser("http://foo.com");
+            browser.Filename.Should().EndWith("foo.exe");
+        }
+
+        [Fact]
         public void Https_Private_should_resolve_chrome()
         {
             var browser = _selector.SelectBrowser("https://private.visualstudio.com");

@@ -1,46 +1,53 @@
 {
-  "browsers" : {
-     "chrome" : {
-        "path" : "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
-        "parameterFormat" :  "--profile-directory=\"{0}\"" 
-     },
-     "firefox" : {
-         "path" : "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
-         "parameterFormat" :  "-P \"{0}\""
-     },
-     "chromeDefault" : {
-        "path" : "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
-        "parameter" : "--profile-directory=\"Default\"" 
-     },
-     "edge" : {
-       "path" : "microsoft-edge:"
-     },
-     "edgeWithOption" : {
-       "path" : "microsoft-edge:",
-       "parameter" : "option1" 
-     } 
+  "browsers": {
+    "chrome": {
+      "path": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+      "parameterFormat": "--profile-directory=\"{0}\""
+    },
+    "firefox": {
+      "path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+      "parameterFormat": "-P \"{0}\""
+    },
+    "chromeDefault": {
+      "path": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+      "parameter": "--profile-directory=\"Default\""
+    },
+    "edge": {
+      "path": "microsoft-edge:"
+    },
+    "foo": {
+      "path": "foo.exe"
+    },
+    "edgeWithOption": {
+      "path": "microsoft-edge:",
+      "parameter": "option1"
+    }
   },
   "default" : {
     "browser" : "edge"
   },
-  "destinations" : [
+  "destinations": [
     {
-       "startUrl" : "company.visualstudio.com",
-       "browser" : "chrome",
-       "parameters" : ["Profile 1"]
+      "startUrl": "company.visualstudio.com",
+      "browser": "chrome",
+      "parameters": [ "Profile 1" ]
     },
     {
-      "startUrl" : "localhost:3475",
-      "browser" : "chrome",
-      "parameters" : ["Profile 2"]
+      "startUrl": "localhost:3475",
+      "browser": "chrome",
+      "parameters": [ "Profile 2" ]
     },
     {
-      "startUrl" : "private.visualstudio.com",
-      "browser" : "firefox" 
+      "startUrl": "private.visualstudio.com",
+      "browser": "firefox"
     },
     {
-      "startUrl" : "default.visualstudio.com",
-      "browser" : "chromeDefault" 
+      "startUrl": "default.visualstudio.com",
+      "browser": "chromeDefault"
+    },
+    {
+      "startUrl": "www.foo.com",
+      "browser": "foo"
     }
   ]
 }

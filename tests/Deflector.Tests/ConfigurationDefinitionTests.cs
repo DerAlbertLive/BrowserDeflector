@@ -13,9 +13,9 @@ namespace Deflector.Tests
         }
 
         [Fact]
-        public void Should_have_five_browserDefinitions()
+        public void Should_have_six_browserDefinitions()
         {
-            _configuration.Browsers.Count.Should().Be(5);
+            _configuration.Browsers.Count.Should().Be(6);
         }
 
         [Theory]
@@ -61,9 +61,9 @@ namespace Deflector.Tests
         }
 
         [Fact]
-        public void Should_contain_four_destinations()
+        public void Should_contain_five_destinations()
         {
-            _configuration.Destinations.Length.Should().Be(4);
+            _configuration.Destinations.Length.Should().Be(5);
         }
 
         [Fact]

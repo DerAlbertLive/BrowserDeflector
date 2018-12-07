@@ -108,14 +108,13 @@ namespace Deflector
                 var a = new Uri(uri);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show($"The Uri: '{uri}' could not be opened", BrowserDeflector, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return false;
             }
         }
-
 
         static void LaunchBrowser(Browser browser)
         {

@@ -1,0 +1,8 @@
+assembly-versioning-scheme: MajorMinorPatch
+assembly-file-versioning-scheme: MajorMinorPatchTag
+increment: Patch
+branches:
+  develop:
+     increment: Patch
+ignore:
+  sha: []
