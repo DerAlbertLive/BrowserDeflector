@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Deflector
 {
     public class DeflectorConfiguration
     {
-        public IDictionary<string, BrowserDefinition> Browsers { get; set; } = new Dictionary<string, BrowserDefinition>();
+        public DeflectorConfiguration()
+        {
+            Browsers = new Dictionary<string, BrowserDefinition>();
+            Destinations = Array.Empty<DestinationDefinition>();
+        }
+
+        public Dictionary<string, BrowserDefinition> Browsers { get; set; }
 
         public BrowserDefinition DefaultBrowser
         {
@@ -33,6 +40,6 @@ namespace Deflector
 
         public DestinationDefinition Default { get; set; }
 
-        public DestinationDefinition[] Destinations { get; set; } = Array.Empty<DestinationDefinition>();
+        public DestinationDefinition[] Destinations { get; set; }
     }
 }
