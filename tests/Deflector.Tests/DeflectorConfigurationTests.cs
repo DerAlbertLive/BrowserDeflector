@@ -92,6 +92,24 @@ namespace Deflector.Tests
             a.Should().Throw<InvalidOperationException>();
         }
 
+        [Fact]
+        public void StartUrlsInBrowser_should_be_converted_to_DestinationDefinitions()
+        {
+            BrowserDefinition firstBrowser = new BrowserDefinition();
+            firstBrowser.StartUrls = new[] {"EineUrl", "ZweiteUrl"};
+            _configuration.Browsers.Add("first", firstBrowser);
+
+            var definitions = _configuration.CombinedDestinations.ToArray();
+
+            definitions[0].Browser.Should().Be("first");
+            definitions[0].StartUrl.Should().Be("EineUrl");
+
+            definitions[1].Browser.Should().Be("first");
+            definitions[1].StartUrl.Should().Be("ZweiteUrl");
+
+            definitions.Length.Should().Be(2);
+        }
+
         readonly DeflectorConfiguration _configuration;
     }
 }
