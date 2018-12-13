@@ -13,7 +13,8 @@
       "parameter": "--profile-directory=\"Default\""
     },
     "edge": {
-      "path": "microsoft-edge:"
+      "path": "microsoft-edge:",
+      "startUrls" : ["ErsteUrl", "ZweiteUrl"] 
     },
     "foo": {
       "path": "foo.exe"

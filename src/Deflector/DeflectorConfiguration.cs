@@ -40,6 +40,23 @@ namespace Deflector
 
         public DestinationDefinition Default { get; set; }
 
-        public DestinationDefinition[] Destinations { get; set; }
+        public IEnumerable<DestinationDefinition> CombinedDestinations => GetDestinationsFromBrowser().Concat(Destinations);
+
+        public IEnumerable<DestinationDefinition> Destinations { get; set; }
+        
+        private IEnumerable<DestinationDefinition> GetDestinationsFromBrowser()
+        {
+            foreach (var  kv in Browsers)
+            {
+                foreach (var startUrl in kv.Value.StartUrls)
+                {
+                    yield return new DestinationDefinition()
+                    {
+                        Browser = kv.Key,
+                        StartUrl = startUrl
+                    };
+                }
+            }
+        }
     }
 }

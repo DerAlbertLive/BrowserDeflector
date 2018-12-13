@@ -45,7 +45,7 @@ namespace Deflector
         {
             DestinationDefinition destinationDefinition = _configuration.Default;
 
-            foreach (var definition in _configuration.Destinations)
+            foreach (var definition in _configuration.CombinedDestinations)
             {
                 var alternateStartUrl = GetAlternateStartUrl(definition.StartUrl);
 

@@ -6,6 +6,8 @@ namespace Deflector
     {
         public string Path { get; set; }
 
+        public string[] StartUrls { get; set; } = Array.Empty<string>();
+
         public string Parameter { get; set; }
 
         public string ParameterFormat

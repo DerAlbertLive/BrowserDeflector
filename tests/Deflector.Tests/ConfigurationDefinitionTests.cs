@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using Xunit;
 
 namespace Deflector.Tests
@@ -63,19 +64,29 @@ namespace Deflector.Tests
         [Fact]
         public void Should_contain_five_destinations()
         {
-            _configuration.Destinations.Length.Should().Be(5);
+            _configuration.CombinedDestinations.Count().Should().Be(7);
         }
 
         [Fact]
         public void Should_map_destination_definition_properties()
         {
-            var dest = _configuration.Destinations[0];
+            var dest = _configuration.CombinedDestinations.ToArray()[2];
 
             dest.Browser.Should().Be("chrome", "browser not bound");
             
             dest.StartUrl.Should().Be("company.visualstudio.com", "startUrl not bound");
             
             dest.Parameters[0].Should().Be("Profile 1", "parameters not bound");
+        }
+
+        [Fact]
+        public void Edge_should_have_some_startUrls()
+        {
+            var edge = _configuration.Browsers.Single(b => b.Key == "edge").Value;
+            edge.StartUrls.Length.Should().Be(2);
+
+            edge.StartUrls[0].Should().Be("ErsteUrl");
+            edge.StartUrls[1].Should().Be("ZweiteUrl");
         }
     }
 }
