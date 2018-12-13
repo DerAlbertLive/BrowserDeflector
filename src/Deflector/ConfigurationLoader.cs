@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using Newtonsoft.Json;
+using System.Web.Script.Serialization;
 
 namespace Deflector
 {
@@ -16,11 +16,10 @@ namespace Deflector
 
             if (File.Exists(path))
             {
-                using (var reader = File.OpenText(path))
-                {
-                    var serializer =  new JsonSerializer();
-                    return serializer.Deserialize<DeflectorConfiguration>(new JsonTextReader(reader));
-                }
+                var serializer = new JavaScriptSerializer();
+
+                var allJson = File.ReadAllText(path);
+                return serializer.Deserialize<DeflectorConfiguration>(allJson);
             }
 
             return new DeflectorConfiguration();
