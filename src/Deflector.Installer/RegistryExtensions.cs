@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 
-namespace Deflector
+namespace Deflector.Installer
 {
     public static class RegistryExtensions
     {

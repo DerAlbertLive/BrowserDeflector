@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <Product>Browser Deflector</Product>
+    <Authors>Albert Weinert</Authors>
+    <Copyright>2018 Albert Weinert</Copyright>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\bin\Release\</OutputPath>
+  </PropertyGroup>
+</Project>
