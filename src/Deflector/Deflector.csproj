@@ -6,17 +6,14 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <Product>Browser Deflector</Product>
-    <Authors>Albert Weinert</Authors>
-    <Copyright>2018 Albert Weinert</Copyright>
     <PackageId>BrowserDeflector</PackageId>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/DerAlbertCom/BrowserDeflector</RepositoryUrl>
   </PropertyGroup>
 
+
   <ItemGroup>
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 
   <ItemGroup>

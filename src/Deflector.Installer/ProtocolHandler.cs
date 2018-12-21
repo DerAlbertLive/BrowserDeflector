@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using System.Security.Principal;
 using Microsoft.Win32;
 
-namespace Deflector
+namespace Deflector.Installer
 {
     // based on https://github.com/da2x/EdgeDeflector/blob/master/EdgeDeflector/Program.cs
 
@@ -45,7 +46,7 @@ namespace Deflector
 
         void RegisterClassRoot(string applicationName)
         {
-            var execPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var execPath = GetDeflectorPath();
             using (var classRegistryKey = Registry.ClassesRoot.OpenOrCreateSubKey(applicationName))
             {
                 classRegistryKey.SetValue(string.Empty, $"URL: {applicationName}");
@@ -61,6 +62,13 @@ namespace Deflector
                 }
                 classRegistryKey.SetValue("URL Protocol", string.Empty);
             }
+        }
+
+        private static string GetDeflectorPath()
+        {
+            var location = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var directory = Path.GetDirectoryName(location);
+            return Path.Combine(directory, "Deflector.exe");
         }
 
         void RemoveHttpProtocolHandler(string applicationName)
